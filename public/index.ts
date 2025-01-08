@@ -1,4 +1,4 @@
 import Logo from './logo.svg';
-
-export * from './header';
 export { Logo };
+export * from './header';
+export * from './footer';

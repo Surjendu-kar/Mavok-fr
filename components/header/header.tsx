@@ -17,7 +17,7 @@ async function Header() {
   )) as HeaderData[];
 
   return (
-    <div className="fixed top-0 flex items-center justify-between px-10 py-5 text-common-light z-[2] w-full">
+    <div className="fixed top-0 flex items-center justify-between px-0 lg:px-10 lg:py-5 text-common-light z-[2] w-full">
       <div className="flex items-center gap-32">
         {/* logo */}
         <div>

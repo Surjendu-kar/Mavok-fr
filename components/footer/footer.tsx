@@ -39,8 +39,8 @@ async function Footer() {
   // console.log({footerData});
 
   return (
-    <div className="mt-auto flex flex-col px-5 lg:px-10 py-10 gap-5 bg-background-light">
-      <div className="flex flex-wrap lg:flex-row gap-4 lg:gap-0 justify-between bg-background-light ">
+    <div className="mt-auto flex flex-col px-5 lg:px-10 py-10 gap-10 lg:gap-5 bg-background-light">
+      <div className="flex flex-wrap lg:flex-row gap-6 lg:gap-0 justify-between bg-background-light ">
         {/* Footer Category */}
         {footerData?.category?.map(category => (
           <div key={category.name}>

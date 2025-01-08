@@ -1,18 +1,55 @@
 import directus from '@/directus/client';
 import { TableNames } from '@/enum';
 import { readItems } from '@directus/sdk';
-import React from 'react';
+
+type FeatureDataType = {
+  bg_img: string;
+  heading: [
+    {
+      heading: string;
+      sub_heading: string;
+      description: string;
+    }
+  ];
+};
 
 async function Feature() {
-  const herodata = await directus.request(
+  const featureData = (await directus.request(
     readItems(TableNames.FEATURE_SECTION)
-  );
-  // console.log(herodata);
-  const data = herodata[0];
+  )) as FeatureDataType[];
+
+  console.log(featureData);
+  const data = featureData[0];
 
   const bgImageUrl = `${process.env.NEXT_PUBLIC_DIRECTUS_URL}/assets/${data.bg_img}`;
-  console.log(bgImageUrl);
-  return <div></div>;
+
+  return (
+    <div
+      className="relative min-h-screen flex flex-col uppercase m-[10px] lg:m-[120px]"
+      style={{
+        backgroundImage: `url(${bgImageUrl})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      {/* Content */}
+      <div className="absolute inset-0 z-0 left-5 lg:left-16 top-5 lg:top-16">
+        {data.heading.map((heading, index) => (
+          <div key={index}>
+            <p className="text-green-500 text-sm lg:text-md font-medium">
+              {heading.heading}
+            </p>
+            <p className="text-white text-xl lg:text-4xl font-bold">
+              {heading.sub_heading}
+            </p>
+            <p className="text-white text-xs pr-5 lg:pr-0 lg:text-md">
+              {heading.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default Feature;

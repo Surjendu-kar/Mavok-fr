@@ -9,8 +9,6 @@ export enum TableNames {
   FEATURE_SECTION = 'feature_section',
 
   // footer
-  FOOTER_CATEGORY = 'footer_category',
-  FOOTER_OPTIONS = 'footer_options',
-  FOOTER_IMG = 'footer_img',
   FOOTER = 'footer',
+  FOOTER_SOCIAL_ICONS = 'footer_social_icons',
 }

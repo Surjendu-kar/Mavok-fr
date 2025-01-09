@@ -30,16 +30,24 @@ type FooterDataType = {
   social_icons: FooterSocialIconType[];
 };
 
+type SocialIconType = {
+  id: string;
+  image: string;
+};
 async function Footer() {
   //fetch all footer data
   const footerData = (await directus.request(
     readItems(TableNames.FOOTER)
   )) as unknown as FooterDataType;
 
-  // console.log({footerData});
+  const socialIcons = footerData?.social_icons;
+
+  const socialIconData = (await directus.request(
+    readItems(TableNames.FOOTER_SOCIAL_ICONS)
+  )) as SocialIconType[];
 
   return (
-    <div className="mt-auto flex flex-col px-5 lg:px-10 py-10 gap-10 lg:gap-5 bg-background-light">
+    <div className="mt-auto flex flex-col px-5 lg:px-10 py-10 gap-10 lg:gap-10 bg-background-light">
       <div className="flex flex-wrap lg:flex-row gap-6 lg:gap-0 justify-between bg-background-light ">
         {/* Footer Category */}
         {footerData?.category?.map(category => (
@@ -78,6 +86,34 @@ async function Footer() {
               You agree to receive newsletters and marketing emails from MAVOK
             </label>
           </div>
+        </div>
+      </div>
+
+      <div className='flex justify-between'>
+        {/* payment icons */}
+        <div></div>
+        {/* social icons */}
+        <div className="flex items-center gap-2">
+          {socialIcons?.map(icon => (
+            <Link
+              key={icon.icon.key}
+              className="flex items-center gap-10 p-2 border border-primary-light rounded-lg hover:scale-110 hover:border-primary-light  transition-all duration-300"
+              href={icon.link}
+            >
+              {socialIconData.find(data => data.id === icon.icon.key) && (
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}/assets/${
+                    socialIconData.find(data => data.id === icon.icon.key)
+                      ?.image
+                  }`}
+                  alt="social icon"
+                  width={16}
+                  height={16}
+                  unoptimized
+                />
+              )}
+            </Link>
+          ))}
         </div>
       </div>
 

@@ -18,9 +18,7 @@ async function Feature() {
     readItems(TableNames.FEATURE_SECTION)
   )) as FeatureDataType[];
 
-  console.log(featureData);
   const data = featureData[0];
-
   const bgImageUrl = `${process.env.NEXT_PUBLIC_DIRECTUS_URL}/assets/${data.bg_img}`;
 
   return (
@@ -33,7 +31,7 @@ async function Feature() {
       }}
     >
       {/* Content */}
-      <div className="absolute inset-0 z-0 left-5 lg:left-16 top-16 lg:top-16 w-full lg:w-[50%]">
+      <div className="absolute inset-0 z-0 left-5 lg:left-16 top-16 lg:top-16 lg:w-[50%]">
         {data.heading.map((heading, index) => (
           <div key={index}>
             <p className="text-green-500 text-sm lg:text-md font-medium">

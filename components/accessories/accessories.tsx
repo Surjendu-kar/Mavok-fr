@@ -9,10 +9,29 @@ type Props = {
 
 export default function Accessories({ accessoriesType, accessories }: Props) {
   const [selectedType, setSelectedType] = useState<number>(1);
+  const [sortBy, setSortBy] = useState<string>('recommendation');
 
+  //  filtered accessories
   const filteredAccessories = accessories.filter(accessory =>
     selectedType === 1 ? true : accessory.type === selectedType
   );
+
+  //  sorted accessories
+  const sortedAccessories = [...filteredAccessories].sort((a, b) => {
+    switch (sortBy) {
+      case 'price_low_to_high':
+        return a.price - b.price;
+      case 'price_high_to_low':
+        return b.price - a.price;
+      default:
+        return 0;
+    }
+  });
+
+  //  handle sort change
+  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortBy(event.target.value);
+  };
 
   return (
     <div className="text-black mt-14 lg:mt-16 bg-white flex flex-col">
@@ -54,6 +73,8 @@ export default function Accessories({ accessoriesType, accessories }: Props) {
             <select
               name="sort"
               id="sort"
+              value={sortBy}
+              onChange={handleSortChange}
               className="text-primary bg-transparent font-bold text-xs lg:text-sm cursor-pointer uppercase outline-none border-none focus:ring-0 focus:outline-none"
             >
               <option value="recommendation">Recommendation</option>
@@ -65,7 +86,7 @@ export default function Accessories({ accessoriesType, accessories }: Props) {
 
         {/* accessories */}
         <div className="flex flex-wrap gap-4 items-center">
-          {filteredAccessories.map(accessory => (
+          {sortedAccessories.map(accessory => (
             <div
               key={accessory.id}
               className="flex flex-col w-[150px] lg:w-[220px] p-3 lg:p-6 gap-2 bg-background rounded-lg"

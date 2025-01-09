@@ -19,7 +19,7 @@ export function ClientHeader({ items }: ClientHeaderProps) {
   return (
     <>
       <div
-        className={`fixed top-0 flex items-center justify-between px-0 lg:px-10 lg:py-5 ${
+        className={`fixed top-0 flex items-center justify-between px-2 lg:px-10 py-4 lg:py-5 ${
           pathname === '/' ? 'text-common-light' : 'text-primary'
         } z-[2] w-full`}
       >
@@ -67,11 +67,11 @@ export function ClientHeader({ items }: ClientHeaderProps) {
           </button>
           {!isMenuOpen && (
             <button
-              className="lg:hidden hover:text-gray-600 transition-colors z-[4] fixed right-0 top-0"
+              className="lg:hidden hover:text-gray-600 transition-colors z-[4] fixed right-2 top-4"
               onClick={() => setIsMenuOpen(true)}
               aria-label="Open menu"
             >
-              <FiMenu size={24} />
+              <FiMenu size={20} />
             </button>
           )}
         </div>
@@ -92,7 +92,7 @@ export function ClientHeader({ items }: ClientHeaderProps) {
             <FiX size={24} className="text-black" />
           </button>
         </div>
-        <nav className="py-4">
+        <nav className="">
           {items.map(post => (
             <Link
               key={post.id}

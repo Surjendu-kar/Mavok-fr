@@ -15,17 +15,17 @@ export default function Accessories({ accessoriesType, accessories }: Props) {
   );
 
   return (
-    <div className="text-black mt-10 lg:mt-16 bg-white flex flex-col">
+    <div className="text-black mt-14 lg:mt-16 bg-white flex flex-col">
       {/* category */}
-      <div className="flex flex-wrap gap-2 justify-center py-5 lg:py-10">
+      <div className="flex flex-wrap gap-2 justify-center py-5 border-t border-gray-200">
         {accessoriesType.map(type => (
           <div
             key={type.id}
             onClick={() => setSelectedType(type.id)}
             className={`flex flex-col items-center w-[80px] lg:w-[100px] cursor-pointer rounded-lg transition-all duration-300 p-4 ${
               selectedType === type.id
-                ? 'bg-[#7373731f]'
-                : 'hover:bg-[#7373731f]'
+                ? 'bg-[#FAFAFA]'
+                : 'hover:bg-[#FAFAFA]'
             }`}
           >
             <Image
@@ -41,7 +41,7 @@ export default function Accessories({ accessoriesType, accessories }: Props) {
         ))}
       </div>
 
-      <div className="flex flex-col bg-[#FAFAFA] px-5 lg:px-10 py-10 gap-6">
+      <div className="flex flex-col bg-[#FAFAFA] px-5 lg:px-20 py-5 lg:py-10 gap-6 border-t border-gray-200">
         {/* header */}
         <div className="flex justify-between">
           <p className="text-primary lg:text-2xl text-xl font-bold">Accessories</p>
@@ -60,7 +60,7 @@ export default function Accessories({ accessoriesType, accessories }: Props) {
         </div>
 
         {/* accessories */}
-        <div className="flex flex-wrap gap-4 items-center justify-center">
+        <div className="flex flex-wrap gap-4 items-center">
           {filteredAccessories.map(accessory => (
             <div
               key={accessory.id}

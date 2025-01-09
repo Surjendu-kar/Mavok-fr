@@ -12,6 +12,7 @@ export default {
         primary: {
           DEFAULT: '#0A0A0A',
           light: '#737373',
+          lighter: '#F5F5F5',
         },
         background: {
           DEFAULT: 'var(--background)',

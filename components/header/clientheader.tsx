@@ -20,7 +20,7 @@ export function ClientHeader({ items }: ClientHeaderProps) {
     <>
       <div
         className={`fixed top-0 flex items-center justify-between px-2 lg:px-10 py-4 lg:py-5 ${
-          pathname === '/' ? 'text-common-light' : 'text-primary'
+          pathname === '/' ? 'text-common-light' : 'text-primary bg-white shadow-md'
         } z-[2] w-full`}
       >
         {/* Logo */}

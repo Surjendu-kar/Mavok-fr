@@ -53,7 +53,7 @@ async function HeroSection() {
             {data.button_text?.map((btn, index) => (
               <Link
                 key={index}
-                href={btn.link}
+                href={`category/${btn.link}`}
                 className="bg-green-500 text-sm lg:text-md text-white px-4 lg:px-6 py-2 rounded hover:bg-green-600 transition-colors font-bold"
               >
                 {btn.text} →

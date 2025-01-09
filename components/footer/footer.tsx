@@ -5,45 +5,9 @@ import { readItems } from '@directus/sdk';
 import Image from 'next/image';
 import Link from 'next/link';
 
-type FooterOptionType = {
-  name: string;
-  slug: string;
-};
-
-type FooterCategoryType = {
-  name: string;
-  options: FooterOptionType[];
-};
-
-type FooterSocialIconType = {
-  icon: {
-    collection: string;
-    key: string;
-  };
-  link: string;
-  name: string;
-};
-
-type FooterDataType = {
-  id: number;
-  category: FooterCategoryType[];
-  social_icons: FooterSocialIconType[];
-  payemnt_img: number[];
-};
-
-type FooterFilesType = {
-  id: number;
-  footer_id: number;
-  directus_files_id: string;
-};
-
-type SocialIconType = {
-  id: string;
-  image: string;
-};
 async function Footer() {
-  // fetch footer data
-  const footerData = await directus.request<FooterDataType>(
+  // fetch category data
+  const category = await directus.request<CategoryType>(
     readItems(TableNames.FOOTER)
   );
 
@@ -57,13 +21,13 @@ async function Footer() {
     readItems(TableNames.FOOTER_FILES)
   );
 
-  const socialIcons = footerData?.social_icons;
+  const socialIcons = category?.social_icons;
 
   return (
     <div className="mt-auto flex flex-col px-5 lg:px-10 py-10 gap-10 lg:gap-10 bg-background-light">
       <div className="flex flex-wrap lg:flex-row gap-6 lg:gap-0 justify-between bg-background-light ">
         {/* Footer Category */}
-        {footerData?.category?.map(category => (
+        {category?.category?.map(category => (
           <div key={category.name}>
             <p className="text-primary font-bold uppercase">{category.name}</p>
             {category.options?.map((option, index) => (

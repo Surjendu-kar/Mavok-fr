@@ -15,14 +15,14 @@ export default function Accessories({ accessoriesType, accessories }: Props) {
   );
 
   return (
-    <div className="text-black mt-20 bg-white flex flex-col">
+    <div className="text-black mt-10 lg:mt-16 bg-white flex flex-col">
       {/* category */}
-      <div className="flex flex-wrap gap-2 items-center justify-center py-10">
+      <div className="flex flex-wrap gap-2 justify-center py-5 lg:py-10">
         {accessoriesType.map(type => (
           <div
             key={type.id}
             onClick={() => setSelectedType(type.id)}
-            className={`flex flex-col items-center justify-center cursor-pointer rounded-lg transition-all duration-300 p-4 ${
+            className={`flex flex-col items-center w-[80px] lg:w-[100px] cursor-pointer rounded-lg transition-all duration-300 p-4 ${
               selectedType === type.id
                 ? 'bg-[#7373731f]'
                 : 'hover:bg-[#7373731f]'
@@ -36,7 +36,7 @@ export default function Accessories({ accessoriesType, accessories }: Props) {
               unoptimized
               className="w-[40px] h-[40px] lg:w-[60px] lg:h-[60px] object-cover mx-auto"
             />
-            <p className="font-bold">{type.type}</p>
+            <p className="font-bold text-center text-xs lg:text-base">{type.type}</p>
           </div>
         ))}
       </div>

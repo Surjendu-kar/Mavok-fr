@@ -116,9 +116,9 @@ async function Footer() {
                   key={icon.id}
                   src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}/assets/${icon.directus_files_id}`}
                   alt="payment icon"
-                  className="w-auto h-auto max-w-[30px] max-h-[30px]"
+                  className="w-[30px] h-[20px] "
                   width={30}
-                  height={30}
+                  height={20}
                   unoptimized
                 />
               ))}

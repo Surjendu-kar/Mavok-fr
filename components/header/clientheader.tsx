@@ -96,7 +96,7 @@ export function ClientHeader({ items }: ClientHeaderProps) {
           {items.map(post => (
             <Link
               key={post.id}
-              href={post.slug}
+              href={`/category/${post.slug}`}
               className="block py-3 uppercase text-md font-bold hover:bg-gray-100 px-6 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >

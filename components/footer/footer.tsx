@@ -125,7 +125,7 @@ async function Footer() {
         <select
           name="language"
           id="language"
-          className="text-primary font-bold text-sm lg:text-[15px] cursor-pointer"
+          className="text-primary font-bold text-sm lg:text-[15px] cursor-pointer uppercase outline-none border-none focus:ring-0 focus:outline-none"
         >
           <option value="en">English</option>
           <option value="ar">Arabic</option>

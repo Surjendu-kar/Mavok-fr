@@ -28,6 +28,13 @@ type FooterDataType = {
   id: number;
   category: FooterCategoryType[];
   social_icons: FooterSocialIconType[];
+  payemnt_img: number[];
+};
+
+type FooterFilesType = {
+  id: number;
+  footer_id: number;
+  directus_files_id: string;
 };
 
 type SocialIconType = {
@@ -35,16 +42,22 @@ type SocialIconType = {
   image: string;
 };
 async function Footer() {
-  //fetch all footer data
-  const footerData = (await directus.request(
+  // fetch footer data
+  const footerData = await directus.request<FooterDataType>(
     readItems(TableNames.FOOTER)
-  )) as unknown as FooterDataType;
+  );
+
+  // fetch social icons
+  const socialIconData = await directus.request<SocialIconType[]>(
+    readItems(TableNames.FOOTER_SOCIAL_ICONS)
+  );
+
+  // fetch payment icons
+  const paymentIcons = await directus.request<FooterFilesType[]>(
+    readItems(TableNames.FOOTER_FILES)
+  );
 
   const socialIcons = footerData?.social_icons;
-
-  const socialIconData = (await directus.request(
-    readItems(TableNames.FOOTER_SOCIAL_ICONS)
-  )) as SocialIconType[];
 
   return (
     <div className="mt-auto flex flex-col px-5 lg:px-10 py-10 gap-10 lg:gap-10 bg-background-light">
@@ -89,15 +102,34 @@ async function Footer() {
         </div>
       </div>
 
-      <div className='flex justify-between'>
+      <div className="flex flex-col lg:flex-row justify-between gap-7 lg:gap-0">
         {/* payment icons */}
-        <div></div>
+        <div className="flex flex-col gap-1 lg:gap-2">
+          <p className="text-primary font-bold uppercase text-xs">
+            PAYMENT METHODS WE ACCEPT
+          </p>
+          <div className="flex items-center gap-2">
+            {paymentIcons
+              .filter(icon => icon.footer_id)
+              ?.map(icon => (
+                <Image
+                  key={icon.id}
+                  src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}/assets/${icon.directus_files_id}`}
+                  alt="payment icon"
+                  className="w-auto h-auto max-w-[30px] max-h-[30px]"
+                  width={30}
+                  height={30}
+                  unoptimized
+                />
+              ))}
+          </div>
+        </div>
         {/* social icons */}
         <div className="flex items-center gap-2">
           {socialIcons?.map(icon => (
             <Link
               key={icon.icon.key}
-              className="flex items-center gap-10 p-2 border border-primary-light rounded-lg hover:scale-110 hover:border-primary-light  transition-all duration-300"
+              className="flex items-center gap-10 p-1 lg:p-2 border border-primary-light rounded-lg hover:scale-110 hover:border-primary-light  transition-all duration-300"
               href={icon.link}
             >
               {socialIconData.find(data => data.id === icon.icon.key) && (
@@ -106,6 +138,7 @@ async function Footer() {
                     socialIconData.find(data => data.id === icon.icon.key)
                       ?.image
                   }`}
+                  className="w-auto h-auto"
                   alt="social icon"
                   width={16}
                   height={16}

@@ -5,7 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { HeaderData } from './types';
 import { FiMenu, FiX, FiSearch, FiUser, FiShoppingCart } from 'react-icons/fi';
-import { Logo } from '@/public';
+import { BlackLogo, Logo } from '@/public';
+import { usePathname } from 'next/navigation';
 
 type ClientHeaderProps = {
   items: HeaderData[];
@@ -13,27 +14,32 @@ type ClientHeaderProps = {
 
 export function ClientHeader({ items }: ClientHeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <>
-      <div className="fixed top-0 flex items-center justify-between px-0 lg:px-10 lg:py-5 text-common-light z-[2] w-full">
+      <div
+        className={`fixed top-0 flex items-center justify-between px-0 lg:px-10 lg:py-5 ${
+          pathname === '/' ? 'text-common-light' : 'text-primary'
+        } z-[2] w-full`}
+      >
         {/* Logo */}
-        <div>
+        <Link href="/">
           <Image
-            src={Logo}
+            src={pathname === '/' ? Logo : BlackLogo}
             alt="logo"
             className="w-auto h-auto"
             width={116}
             height={17}
             priority
           />
-        </div>
+        </Link>
         {/* Desktop Navigation */}
         <div className="hidden lg:flex lg:gap-10">
           {items.map(post => (
             <Link
               key={post.id}
-              href={post.slug}
+              href={`/category/${post.slug}`}
               className="uppercase text-md font-bold hover:text-gray-600 transition-colors"
             >
               {post.title}

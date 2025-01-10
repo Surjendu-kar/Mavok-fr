@@ -1,5 +1,6 @@
 import directus from '@/directus/client';
 import { TableNames } from '@/enum';
+import { formatPrice } from '@/utils';
 import { readItem } from '@directus/sdk';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -69,22 +70,46 @@ async function Page({ params }: Props) {
         </div>
 
         {/* right side */}
-        <div className="flex flex-col gap-2 lg:gap-1">
-          {/* heading */}
-          <h1 className="text-3xl lg:text-4xl font-bold uppercase">
-            {category.heading}
-          </h1>
-          {/* sub heading */}
-          <p className="text-primary-light text-lg">{category.sub_heading}</p>
-          {/* price */}
-          <p className="text-2xl font-bold uppercase">
-            From ${category.price}.00
-          </p>
-          <button className="bg-[#107C11] text-white px-6 py-3 rounded hover:bg-green-600 transition-colors font-bold w-fit">
-            Add to Cart
-          </button>
+        <div className="flex flex-col justify-between gap-2 lg:gap-1">
+          <div className="flex flex-col gap-2">
+            <p className="text-primary-main font-bold uppercase">{type.type}</p>
+            {/* heading */}
+            <p className="text-3xl lg:text-4xl font-bold uppercase">
+              {category.heading}
+            </p>
+            {/* sub heading */}
+            <p className="text-primary-light text-lg">{category.sub_heading}</p>
+          </div>
+
+          <div className="flex flex-col justify-center gap-4 bg-primary-lighter w-[500px]  rounded-md p-5">
+            {/* price */}
+            <p className="text-3xl font-bold uppercase">
+              ${formatPrice(category.price)} AUD
+            </p>
+
+            {/* offer */}
+            <div className="flex flex-col">
+              <div className="flex items-center gap-2">
+                <p className="line-through text-primary-light">
+                  ${formatPrice(category.price)} AUD
+                </p>
+                <p className="text-primary-secondary font-bold">
+                  Save 25% or $111
+                </p>
+              </div>
+
+              <p className="text-primary-light">
+                or $27.75/month with 36-month financing*, before trade-in
+              </p>
+            </div>
+
+            <button className="bg-primary-main text-xl text-white py-3 rounded hover:bg-primary-main_light transition-colors font-bold w-full">
+              Add to Cart
+            </button>
+          </div>
         </div>
       </div>
+      
     </div>
   );
 }

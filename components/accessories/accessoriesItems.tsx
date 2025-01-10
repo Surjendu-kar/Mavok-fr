@@ -1,3 +1,4 @@
+import { formatPrice } from '@/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -30,7 +31,7 @@ export default function AccessoriesItems({ accessories }: Props) {
               {accessory.sub_heading}
             </p>
             <p className="font-bold text-xs lg:text-sm uppercase">
-              From ${accessory.price}.00
+              From ${formatPrice(accessory.price)}.00
             </p>
             <button className="bg-[#107C11] text-sm lg:text-base text-white lg:px-4 lg:py-2 px-0 py-1 rounded hover:bg-green-600 transition-colors font-bold">
               Add to Cart

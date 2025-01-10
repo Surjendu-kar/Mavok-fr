@@ -27,8 +27,6 @@ async function Page({ params }: Props) {
     readItem(TableNames.ACCESSORIES, cat_id)
   );
 
-  console.log(type);
-
   return (
     <div className="mt-16 flex flex-col px-5 lg:px-24 py-10  gap-5">
       {/* breadcrumb */}

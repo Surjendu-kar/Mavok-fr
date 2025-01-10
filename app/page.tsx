@@ -1,5 +1,5 @@
-import Feature from '@/components/feature/feature';
-import HeroSection from '@/components/herosection/herosection';
+import Feature from '@/components/home/feature';
+import HeroSection from '@/components/home/herosection/herosection';
 
 export default async function Home() {
   return (

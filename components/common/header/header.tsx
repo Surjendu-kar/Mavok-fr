@@ -1,7 +1,6 @@
 import directus from '@/directus/client';
 import { TableNames } from '@/enum';
 import { readItems } from '@directus/sdk';
-import { HeaderData } from './types';
 import { ClientHeader } from './clientheader';
 
 async function Header() {

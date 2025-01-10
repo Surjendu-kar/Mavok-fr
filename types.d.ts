@@ -1,4 +1,9 @@
 // header type
+type HeaderData = {
+  id: string;
+  title: string;
+  slug: string;
+};
 
 // accessories type
 type AccessoriesType = {

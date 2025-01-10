@@ -14,11 +14,17 @@ type AccessoriesType = {
 
 type Accessories = {
   id: number;
-  image: string;
+  main_image: string;
   heading: string;
   sub_heading: string;
   price: number;
   type: number;
+};
+
+type AccessoriesFile = {
+  id: string;
+  accessories_id: string;
+  directus_files_id: string;
 };
 
 // footer option type

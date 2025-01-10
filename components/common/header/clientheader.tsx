@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { HeaderData } from './types';
 import { FiMenu, FiX, FiSearch, FiUser, FiShoppingCart } from 'react-icons/fi';
 import { BlackLogo, Logo } from '@/public';
 import { usePathname } from 'next/navigation';
@@ -20,7 +19,9 @@ export function ClientHeader({ items }: ClientHeaderProps) {
     <>
       <div
         className={`fixed top-0 flex items-center justify-between px-2 lg:px-10 py-4 lg:py-5 ${
-          pathname === '/' ? 'text-common-light' : 'text-primary bg-white shadow-md'
+          pathname === '/'
+            ? 'text-common-light'
+            : 'text-primary bg-white shadow-md'
         } z-[2] w-full`}
       >
         {/* Logo */}

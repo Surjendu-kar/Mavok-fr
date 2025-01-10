@@ -17,7 +17,7 @@ export default function AccessoriesItems({ accessories }: Props) {
             className="flex flex-col w-[150px] lg:w-[250px] p-3 lg:p-6 gap-2 bg-background rounded-lg hover:scale-105 transition-transform"
           >
             <Image
-              src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}/assets/${accessory.image}`}
+              src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}/assets/${accessory.main_image}`}
               alt={accessory.heading}
               width={100}
               height={100}

@@ -46,7 +46,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${blenderFont.className} antialiased`}>
+      <body
+        className={`${blenderFont.className} antialiased max-w-[1600px] mx-auto`}
+      >
         <div className="flex flex-col min-h-screen">
           <Header />
           {children}

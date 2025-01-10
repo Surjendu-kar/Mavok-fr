@@ -65,8 +65,13 @@ async function Footer() {
 
       <div className="flex flex-col lg:flex-row justify-between gap-7 lg:gap-0">
         {/* payment icons */}
-        <PaymentPartners />
-
+        <div className="flex flex-col gap-1 lg:gap-2">
+          <p className="text-primary font-bold uppercase text-xs">
+            PAYMENT METHODS WE ACCEPT
+          </p>
+          <PaymentPartners />
+        </div>
+        
         {/* social icons */}
         <SocialIcons
           socialIcons={socialIcons}

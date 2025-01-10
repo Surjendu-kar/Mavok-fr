@@ -1,3 +1,4 @@
+import { PaymentPartners } from '@/components/common/payment-partners';
 import directus from '@/directus/client';
 import { TableNames } from '@/enum';
 import { formatPrice } from '@/utils';
@@ -5,6 +6,10 @@ import { readItem } from '@directus/sdk';
 import Image from 'next/image';
 import Link from 'next/link';
 import { IoIosArrowForward } from 'react-icons/io';
+import { TbTruckDelivery } from 'react-icons/tb';
+import { IoShieldCheckmarkOutline } from 'react-icons/io5';
+import { BiSupport } from 'react-icons/bi';
+import { PiCreditCardFill } from 'react-icons/pi';
 
 type Props = {
   params: Promise<{
@@ -109,7 +114,36 @@ async function Page({ params }: Props) {
           </div>
         </div>
       </div>
-      
+
+      <div className="flex flex-col">
+        {/* Estimated dispatch with 2-days Free Shipping */}
+        <div className="flex items-center gap-3 border-b py-2">
+          <TbTruckDelivery className="text-2xl text-primary-light" />
+          <span className="text-primary-light">
+            Estimated dispatch with 2-days Free Shipping
+          </span>
+        </div>
+        {/* Return Policy */}
+        <div className="flex items-center justify-between border-b py-2">
+          <div className="flex items-center gap-3">
+            <IoShieldCheckmarkOutline className="text-2xl text-primary-light" />
+            <span className="text-primary-light">15-days return policy</span>
+          </div>
+          <IoIosArrowForward className="text-primary-light" />
+        </div>
+        {/* Global Support */}
+        <div className="flex items-center gap-3 border-b py-2">
+          <BiSupport className="text-2xl text-primary-light" />
+          <span className="text-primary-light">Global support</span>
+        </div>
+        {/* Ways to pay */}
+        <div className="flex items-center gap-3 pt-2 pb-3">
+          <PiCreditCardFill className="text-2xl text-primary-light" />
+          <span className="text-primary-light">Ways to pay</span>
+        </div>
+        {/* payment partners */}
+        <PaymentPartners />
+      </div>
     </div>
   );
 }

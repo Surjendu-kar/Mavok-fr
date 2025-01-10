@@ -4,6 +4,8 @@ import { Legal } from '@/public';
 import { readItems } from '@directus/sdk';
 import Image from 'next/image';
 import Link from 'next/link';
+import { PaymentPartners } from '../payment-partners';
+import { SocialIcons } from './social-icons';
 
 async function Footer() {
   // fetch category data
@@ -14,11 +16,6 @@ async function Footer() {
   // fetch social icons
   const socialIconData = await directus.request<SocialIconType[]>(
     readItems(TableNames.FOOTER_SOCIAL_ICONS)
-  );
-
-  // fetch payment icons
-  const paymentIcons = await directus.request<FooterFilesType[]>(
-    readItems(TableNames.FOOTER_FILES)
   );
 
   const socialIcons = category?.social_icons;
@@ -68,50 +65,13 @@ async function Footer() {
 
       <div className="flex flex-col lg:flex-row justify-between gap-7 lg:gap-0">
         {/* payment icons */}
-        <div className="flex flex-col gap-1 lg:gap-2">
-          <p className="text-primary font-bold uppercase text-xs">
-            PAYMENT METHODS WE ACCEPT
-          </p>
-          <div className="flex items-center gap-2">
-            {paymentIcons
-              .filter(icon => icon.footer_id)
-              ?.map(icon => (
-                <Image
-                  key={icon.id}
-                  src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}/assets/${icon.directus_files_id}`}
-                  alt="payment icon"
-                  className="w-[30px] h-[20px] "
-                  width={30}
-                  height={20}
-                  unoptimized
-                />
-              ))}
-          </div>
-        </div>
+        <PaymentPartners />
+
         {/* social icons */}
-        <div className="flex items-center gap-2">
-          {socialIcons?.map(icon => (
-            <Link
-              key={icon.icon.key}
-              className="flex items-center gap-10 p-1 lg:p-2 border border-primary-light rounded-lg hover:scale-110 hover:border-primary-light  transition-all duration-300"
-              href={icon.link}
-            >
-              {socialIconData.find(data => data.id === icon.icon.key) && (
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}/assets/${
-                    socialIconData.find(data => data.id === icon.icon.key)
-                      ?.image
-                  }`}
-                  className="w-auto h-auto"
-                  alt="social icon"
-                  width={16}
-                  height={16}
-                  unoptimized
-                />
-              )}
-            </Link>
-          ))}
-        </div>
+        <SocialIcons
+          socialIcons={socialIcons}
+          socialIconData={socialIconData}
+        />
       </div>
 
       {/* legal */}

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import Header from '@/components/common/header/header';
-import Footer from '@/components/common/footer';
+import Footer from '@/components/common/footer/footer';
 
 const blenderFont = localFont({
   src: [

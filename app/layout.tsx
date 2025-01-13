@@ -50,8 +50,13 @@ export default function RootLayout({
         className={`${blenderFont.className} antialiased max-w-[1600px] mx-auto`}
       >
         <div className="flex flex-col min-h-screen">
+          {/* Header */}
           <Header />
-          {children}
+
+          {/* Main content */}
+          <main className="flex-grow">{children}</main>
+
+          {/* Footer */}
           <Footer />
         </div>
       </body>

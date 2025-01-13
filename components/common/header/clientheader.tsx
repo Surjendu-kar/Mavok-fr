@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { FiMenu, FiX, FiSearch, FiUser, FiShoppingCart } from 'react-icons/fi';
 import { BlackLogo, Logo } from '@/public';
 import { usePathname } from 'next/navigation';
+import useCartStore from '@/store/cartStore';
 
 type ClientHeaderProps = {
   items: HeaderData[];
@@ -14,6 +15,7 @@ type ClientHeaderProps = {
 export function ClientHeader({ items }: ClientHeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { items: cartItems, totalQuantity } = useCartStore();
 
   return (
     <>
@@ -60,12 +62,16 @@ export function ClientHeader({ items }: ClientHeaderProps) {
           >
             <FiUser size={20} className="lg:w-6 lg:h-6" />
           </button>
-          <button
-            aria-label="Cart"
-            className="hover:text-gray-600 transition-colors"
-          >
-            <FiShoppingCart size={20} className="lg:w-6 lg:h-6" />
-          </button>
+          <Link href="/cart" aria-label="Cart">
+            <div className="relative hover:text-gray-600 transition-colors">
+              <FiShoppingCart size={20} className="lg:w-6 lg:h-6" />
+              {cartItems.length > 0 && (
+                <span className="absolute top-0 right-0 bg-primary-main text-white text-xs w-3 h-3 flex items-center justify-center rounded-full">
+                  {totalQuantity()}
+                </span>
+              )}
+            </div>
+          </Link>
           {!isMenuOpen && (
             <button
               className="lg:hidden hover:text-gray-600 transition-colors z-[4] fixed right-2 top-4"

@@ -17,3 +17,7 @@ export enum TableNames {
   FOOTER_SOCIAL_ICONS = 'footer_social_icons',
   FOOTER_FILES = 'footer_files',
 }
+
+export const LocalStorageKeys = {
+  CART: 'cart',
+};

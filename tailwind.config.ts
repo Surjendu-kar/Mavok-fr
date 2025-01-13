@@ -11,11 +11,15 @@ export default {
       colors: {
         primary: {
           main: '#107C11',
-          secondary: '#F43F58', 
           main_light: '#16a34a',
           DEFAULT: '#0A0A0A',
           light: '#737373',
           lighter: '#F5F5F5',
+        },
+        secondary: {
+          DEFAULT: '#FAFAFA',
+          main: '#F43F58',
+          light: '#A3A3A3',
         },
         background: {
           DEFAULT: 'var(--background)',

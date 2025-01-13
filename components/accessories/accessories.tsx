@@ -42,7 +42,7 @@ export default function Accessories({ accessoriesType, accessories }: Props) {
         selectedType={selectedType}
         setSelectedType={setSelectedType}
       />
-      <div className="flex flex-col bg-[#FAFAFA] px-5 lg:px-20 py-5 lg:py-10 gap-6 border-t border-gray-200">
+      <div className="flex flex-col bg-secondary px-5 lg:px-20 py-5 lg:py-10 gap-6 border-t border-gray-200">
         <AccessoriesHeader
           sortBy={sortBy}
           handleSortChange={handleSortChange}

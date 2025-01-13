@@ -100,7 +100,7 @@ async function Page({ params }: Props) {
                 <p className="line-through text-primary-light text-sm lg:text-base">
                   ${formatPrice(category.price)} AUD
                 </p>
-                <p className="text-primary-secondary font-bold text-sm lg:text-base">
+                <p className="text-secondary-main font-bold text-sm lg:text-base">
                   Save 25% or $111
                 </p>
               </div>

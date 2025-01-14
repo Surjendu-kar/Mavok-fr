@@ -9,6 +9,4 @@ const medusaClient = new Medusa({
   apiKey: 'sk_56f8f58b0ab5c9c9567df090b622b82de5c79e1ff64d426a099a867cdc64467b',
 });
 
-console.log('Medusa Client Initialized:', medusaClient);
-
 export default medusaClient;

@@ -10,6 +10,8 @@ import { IoShieldCheckmarkOutline } from 'react-icons/io5';
 import { BiSupport } from 'react-icons/bi';
 import { PiCreditCardFill } from 'react-icons/pi';
 import ImageGallery from '@/components/product-details/image-gallery';
+import VariantsSelector from '@/components/product-details/variants-selector';
+import AddToCart from '@/components/product-details/add-to-cart';
 
 type Props = {
   params: Promise<{
@@ -88,6 +90,8 @@ async function Page({ params }: Props) {
             </p>
           </div>
 
+          <VariantsSelector productId={cat_id} />
+
           <div className="flex flex-col justify-center gap-2 lg:gap-4 bg-primary-lighter w-[350px] lg:w-[500px]  rounded-md p-3 lg:p-5">
             {/* price */}
             <p className="text-xl lg:text-3xl font-bold uppercase">
@@ -110,9 +114,7 @@ async function Page({ params }: Props) {
               </p>
             </div>
 
-            <button className="bg-primary-main text-md lg:text-xl text-white py-1 lg:py-3 rounded hover:bg-primary-main_light transition-colors font-bold w-full">
-              Add to Cart
-            </button>
+            <AddToCart product={category} />
           </div>
         </div>
       </div>
